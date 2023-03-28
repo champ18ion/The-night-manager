@@ -10,18 +10,21 @@ const AlbumForm = memo(({ initialTitle = "", onAddAlbum, onUpdateAlbum }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (onAddAlbum) {
-      const response = await axios.post(
-        "https://jsonplaceholder.typicode.com/albums",
-        { title }
-      );
-      onAddAlbum(response.data);
-    } else if (onUpdateAlbum) {
-      onUpdateAlbum(title);
-      setTitle('')
+    if (title.trim() !== "") {
+      if (onAddAlbum) {
+        const response = await axios.post(
+          "https://jsonplaceholder.typicode.com/albums",
+          { title }
+        );
+        onAddAlbum(response.data);
+      } else if (onUpdateAlbum) {
+        onUpdateAlbum(title);
+        setTitle("");
+      }
+      setTitle("");
     }
-    setTitle("");
   };
+  
 
   return (
 <form onSubmit={handleSubmit} class="form-container">
@@ -30,6 +33,7 @@ const AlbumForm = memo(({ initialTitle = "", onAddAlbum, onUpdateAlbum }) => {
     value={title}
     onChange={(e) => setTitle(e.target.value)}
     placeholder="Enter album title"
+    required={true}
     class="form-input"
   />
   <button type="submit" class="form-btn">{onAddAlbum ? "Add Album" : "Update Album"}</button>

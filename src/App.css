@@ -91,12 +91,25 @@ li {
 .form-input {
   padding: 0.5rem;
   font-size: 1rem;
-  border-radius: 4px;
+  border-radius: 20px;
   border: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   margin-bottom: 1rem;
   width: 20rem;
+  background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+  border: 1px solid #f0f0f0;
+  border-bottom: 2px solid #e0e0e0;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1),
+              0 1px 0 rgba(255, 255, 255, 0.2);
 }
+
+.form-input:focus {
+  outline: none;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3),
+              inset 0 1px 2px rgba(0, 0, 0, 0.1),
+              0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
 
 .form-btn {
   padding: 0.5rem 1rem;
@@ -145,11 +158,13 @@ button.delete:hover {
   display: grid;
   grid-template-columns: 2fr 2fr 2fr;
   gap: 2rem;
+  flex-wrap: wrap;
 }
 
 .album-container{
+
   margin-left: 2rem;
-  width: 25rem;
+  width: 24rem;
   position: relative;
   height: 20rem;
   background: url('https://i.imgur.com/W3tra4F.gif');
@@ -213,4 +228,26 @@ button.delete:hover {
 .album-container>button.delete:hover{
   background-color: #c82333;
   color: #fff;
+}
+@media screen and (max-width: 768px) {
+  .cards-container {
+    grid-template-columns: 3fr ;
+    
+}
+}
+@media screen and (min-width: 768px) and (max-width:1300px) {
+  .cards-container {
+    grid-template-columns: repeat(2,2fr);
+    gap:1rem 1rem;
+    margin: 0;
+    
+}
+.album-container{
+  max-width: 70%;
+
+
+}
+input{
+    max-width: 75%;
+}
 }
